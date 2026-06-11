@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="manifest" href="/static/manifest.json">
     <title>grow - 能力成长追踪</title>
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -15,12 +17,21 @@
             <a href="#" data-tab="abilities" class="nav-link">能力管理</a>
             <a href="#" data-tab="activities" class="nav-link">活动管理</a>
             <a href="#" data-tab="logs" class="nav-link">活动日志</a>
+            <a href="#" data-tab="settings" class="nav-link">设置</a>
         </div>
     </nav>
 
     <main class="container">
         <!-- Dashboard Tab -->
         <section id="tab-dashboard" class="tab-content">
+            <div id="streak-heatmap" class="streak-section"></div>
+
+            <div class="section-header">
+                <h2>目标进度</h2>
+                <button class="btn btn-sm btn-primary" onclick="Goals.showForm()">+ 设定目标</button>
+            </div>
+            <div id="goal-cards" class="goal-cards"></div>
+
             <div class="section-header">
                 <h2>能力概览</h2>
             </div>
@@ -51,7 +62,6 @@
             </div>
             <div id="abilities-list" class="abilities-list"></div>
 
-            <!-- Ability Detail View -->
             <div id="ability-detail" class="ability-detail" hidden>
                 <button class="btn btn-secondary" onclick="Abilities.backToList()">← 返回列表</button>
                 <div id="ability-detail-content"></div>
@@ -84,6 +94,9 @@
             <div id="logs-list" class="logs-list"></div>
             <button id="logs-load-more" class="btn btn-secondary" style="display:none">加载更多</button>
         </section>
+
+        <!-- Settings Tab -->
+        <section id="tab-settings" class="tab-content" hidden></section>
     </main>
 
     <!-- Modal -->
@@ -105,5 +118,7 @@
     <script src="/static/js/abilities.js"></script>
     <script src="/static/js/activities.js"></script>
     <script src="/static/js/logs.js"></script>
+    <script src="/static/js/heatmap.js"></script>
+    <script src="/static/js/settings.js"></script>
 </body>
 </html>

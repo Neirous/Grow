@@ -5,6 +5,13 @@ const App = {
         this.cacheDOM();
         this.bindNavigation();
         this.switchTab('dashboard');
+        this.registerSW();
+    },
+
+    registerSW() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/static/js/sw.js').catch(() => {});
+        }
     },
 
     cacheDOM() {
@@ -39,6 +46,7 @@ const App = {
             case 'abilities': Abilities.load(); break;
             case 'activities': Activities.load(); break;
             case 'logs': Logs.load(); break;
+            case 'settings': Settings.load(); break;
         }
     },
 

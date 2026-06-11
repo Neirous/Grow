@@ -58,4 +58,19 @@ CREATE INDEX IF NOT EXISTS idx_las_log     ON log_ability_snapshots(log_id);
 CREATE INDEX IF NOT EXISTS idx_las_ability ON log_ability_snapshots(ability_id);
 
 CREATE INDEX IF NOT EXISTS idx_abilities_last_activity ON abilities(last_activity_at);
+
+CREATE TABLE IF NOT EXISTS goals (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    ability_id  INTEGER NOT NULL,
+    target_value REAL NOT NULL,
+    deadline    TEXT,
+    is_achieved INTEGER NOT NULL DEFAULT 0,
+    created_at  TEXT NOT NULL DEFAULT (datetime('now')),
+    FOREIGN KEY (ability_id) REFERENCES abilities(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS settings (
+    key   TEXT PRIMARY KEY,
+    value TEXT NOT NULL
+);
 `

@@ -12,6 +12,7 @@ import (
 
 	"grow/internal/db"
 	"grow/internal/handlers"
+	"grow/internal/service"
 )
 
 //go:embed templates/*
@@ -46,7 +47,14 @@ func main() {
 	handlers.RegisterCompleteRoutes(mux)
 	handlers.RegisterLogRoutes(mux)
 	handlers.RegisterDashboardRoutes(mux)
+	handlers.RegisterGoalRoutes(mux)
+	handlers.RegisterStreakRoutes(mux)
+	handlers.RegisterSettingsRoutes(mux)
+	handlers.RegisterNotionRoutes(mux)
 	handlers.RegisterStaticRoutes(mux, templatesFS, staticFS)
+
+	// Start background scheduler
+	service.StartScheduler(db.DB)
 
 	server := &http.Server{
 		Addr:    ":" + *port,
