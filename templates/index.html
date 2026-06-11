@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grow - 能力成长追踪</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">grow</div>
+        <div class="nav-links">
+            <a href="#" data-tab="dashboard" class="nav-link active">仪表盘</a>
+            <a href="#" data-tab="abilities" class="nav-link">能力管理</a>
+            <a href="#" data-tab="activities" class="nav-link">活动管理</a>
+            <a href="#" data-tab="logs" class="nav-link">活动日志</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Dashboard Tab -->
+        <section id="tab-dashboard" class="tab-content">
+            <div class="section-header">
+                <h2>能力概览</h2>
+            </div>
+            <div id="ability-cards" class="ability-cards"></div>
+
+            <div class="section-header">
+                <h2>快速完成活动</h2>
+            </div>
+            <div class="quick-complete">
+                <select id="quick-activity-select">
+                    <option value="">-- 选择活动 --</option>
+                </select>
+                <input type="text" id="quick-note" placeholder="备注（可选）" class="input">
+                <button id="quick-complete-btn" class="btn btn-primary">完成！</button>
+            </div>
+
+            <div class="section-header">
+                <h2>最近日志</h2>
+            </div>
+            <div id="recent-logs" class="recent-logs"></div>
+        </section>
+
+        <!-- Abilities Tab -->
+        <section id="tab-abilities" class="tab-content" hidden>
+            <div class="section-header">
+                <h2>能力管理</h2>
+                <button class="btn btn-primary" onclick="Abilities.showForm()">+ 新增能力</button>
+            </div>
+            <div id="abilities-list" class="abilities-list"></div>
+
+            <!-- Ability Detail View -->
+            <div id="ability-detail" class="ability-detail" hidden>
+                <button class="btn btn-secondary" onclick="Abilities.backToList()">← 返回列表</button>
+                <div id="ability-detail-content"></div>
+            </div>
+        </section>
+
+        <!-- Activities Tab -->
+        <section id="tab-activities" class="tab-content" hidden>
+            <div class="section-header">
+                <h2>活动管理</h2>
+                <button class="btn btn-primary" onclick="Activities.showForm()">+ 新增活动</button>
+            </div>
+            <div id="activities-list" class="activities-list"></div>
+        </section>
+
+        <!-- Logs Tab -->
+        <section id="tab-logs" class="tab-content" hidden>
+            <div class="section-header">
+                <h2>活动日志</h2>
+            </div>
+            <div class="log-filters">
+                <select id="log-filter-activity">
+                    <option value="">全部活动</option>
+                </select>
+                <select id="log-filter-ability">
+                    <option value="">全部能力</option>
+                </select>
+                <button id="log-filter-apply" class="btn btn-secondary">筛选</button>
+            </div>
+            <div id="logs-list" class="logs-list"></div>
+            <button id="logs-load-more" class="btn btn-secondary" style="display:none">加载更多</button>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="modal-overlay" class="modal-overlay" hidden>
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modal-title"></h3>
+                <button class="modal-close" onclick="Modal.hide()">&times;</button>
+            </div>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/dashboard.js"></script>
+    <script src="/static/js/abilities.js"></script>
+    <script src="/static/js/activities.js"></script>
+    <script src="/static/js/logs.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# Binary
+grow
+
+# SQLite database
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker data
+data/
