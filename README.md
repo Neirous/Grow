@@ -5,7 +5,7 @@
 ## 快速开始
 
 ```bash
-# 启动服务（需要 Go 1.22+）
+# 启动服务（需要 Go 1.25+）
 make run
 
 # 浏览器打开
@@ -117,7 +117,7 @@ docker run -d --name grow -p 8080:8080 -v $(pwd)/data:/data crpi-51pd4blge4jwd9y
 
 | 层面 | 技术 |
 |------|------|
-| 后端 | Go 1.22+（标准库 net/http） |
+| 后端 | Go 1.25+（标准库 net/http） |
 | 数据库 | SQLite（modernc/sqlite，纯 Go） |
 | 前端 | 原生 HTML/CSS/JS + Chart.js |
 | 部署 | Docker / 阿里云容器镜像 |
